@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Offers Add Or Upldate</title>
+        <%- include('bootstrap') -%>
+    </head>
+    <body>
+        <div class="container-fluid mt-3">
+            <center>
+                <h1>
+                    Insert Offer
+                </h1>
+            </center>
+        </div>
+        <div class="container-fluid mt-3 parentProduct">
+            <form  action="/admin/offers" method="POST" autocomplete="off" class="productForm" >
+                
+                <input type="hidden" name="_id" value="<%= offer._id %>">
+                <table class="productTable">
+                    <tr>
+                        <td>
+                            Offer Description :
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="Offer_Desc" placeholder=" Offer Description" value="<%= offer.Offer_Desc %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-danger">   
+                                <%= offer.OfferDescriptionError %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Activated :
+                        </td>
+                        <td>
+                            <select name="offer" id="dropdown">
+                                
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-danger">   
+                                <%= offer.IsActivatedError %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Offer Start Date:
+                        </td>
+                        <td>
+                            <input type="date" class="form-control" name="Offer_StartDate" placeholder=" Start Date" value="<%= offer.Offer_StartDate %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-danger">
+                                <%=offer.StartDateError%>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Offer End Date : 
+                        </td> 
+                        <td>
+                            <input type="date" class="form-control" name="Offer_EndDate" placeholder=" End Date" value="<%= offer.Offer_EndDate %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-danger">
+                                <%= offer.EndDateError %>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" href="/admin/offers/list"><i class="fa fa-list-alt"></i> View All</a>
+                        </td>
+                    </tr>
+                </table>
+    
+    
+    
+            </form>
+        </div>
+
+
+    </body>
+</html>

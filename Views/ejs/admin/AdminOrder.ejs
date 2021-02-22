@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order List</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+        <center>
+            <h1>Orders List</h1>
+        </center>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row pt-3 pb-3" style="border-bottom: 1px solid black;border-top: 1px solid black;">
+            <div class="col">
+                <b>
+                    <h6>Order ID</h6>
+                </b>
+            </div>
+            <div class="col">
+                <b>
+                    <h6>
+                        Customer Name
+                    </h6>
+                </b>
+            </div>
+            <div class="col">
+
+                <b>
+                    <h6>
+                        Order Date
+                    </h6>
+                </b>
+            </div>
+            <div class="col">
+                <b>
+                    <h6>
+                        Product Name
+                    </h6>
+                </b>
+            </div>
+            <div class="col">
+                <b>
+                    <h6>
+                        Order Status
+                    </h6>
+
+                </b>
+            </div>
+            <div class="col">
+
+                <b>
+                    <h6>
+                        Payment Status
+                    </h6>
+                </b>
+            </div>
+        </div>
+    </div>
+    <% if(Object.keys(order).length !=0){ %>
+
+        <% order.forEach(o=>{ %>
+            <% if(o.delivery_id.delivery_status !="Delivered" || o.payment_id.payment_status !="received" ){ %>
+                <div class="container-fluid mt-3 pb-3" style="border-bottom: 1px solid black;">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/admin/delivery-details/<%= o.delivery_id._id %>" style="text-decoration: none;">
+                                <%= o._id %>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <%= o.user_id.name %>
+                        </div>
+                        <div class="col">
+                            <%= o.order_date %>
+                        </div>
+                        <div class="col">
+                            <% o.products.items.forEach(p=>{%>
+                                <%= p.name %><br>
+                                    <%})%>
+                        </div>
+                        <div class="col">
+                            <form action="/admin/manageorder/status" method="POST">
+                                <input type="hidden" name="order_id" value="<%= o._id %>">
+                                <select name="delivery_status" id="" onchange="this.form.submit()">
+                                    <% var options=[ "Placed" ,"Dispatched","Delivered" ]; for ( var i=0; i < options.length; i++ )
+                                     { var selected=( o.delivery_id.delivery_status==options[i]) ? "selected" : "" ; %>
+                                        <option value="<%= options[ i ] %>" <%= selected %>><%= options[i] %>
+                                        </option>
+                                        <% } %>
+
+                                </select>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <form action="/admin/managepayment/status" method="POST">
+                                <input type="hidden" name="order_id" value="<%= o._id %>">
+                                <select name="payment_status" id="" onchange="this.form.submit()">
+
+                                    <% var options=[ "pending" ,"received" ]; for ( var i=0; i < options.length; i++ ) {
+                                        var selected=( o.payment_id.payment_status==options[i] ) ? "selected" : "" ; %>
+                                        <option value="<%=options[ i ] %>" <%=selected %>><%= options[i] %>
+                                        </option>
+                                        <% } %>
+
+                                </select>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <% } %>
+                    <%}) %>
+                        <% } %>
+                            <%- include('bootstrapLink') -%>
+</body>
+
+</html>

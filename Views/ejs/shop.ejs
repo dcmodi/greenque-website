@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shop</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+
+    <%- include('header'); -%>
+
+        <!-- SHOP PAGE-->
+        <div class="container-fluid mt-5" id="shop">
+            <div class="row">
+                <div class="col-lg-3 col-md-12">
+                    <form action="/shop" method="POST">
+                        <center>
+                            <h5 class="text-dark">CATEGORIES</h5>
+                            <div class="divider"></div>
+
+                            <div class="custom-control custom-checkbox mt-3 mb-5"
+                                style="text-align: left;margin-left:35%">
+                                <% category.forEach(c=>{%>
+
+                                    <input type="checkbox" name="category" class="custom-control-input" id="customCheck1"
+                                        value="<%= c.category_name %>">
+                                    <label class="custom-control-label text-muted" for="customCheck1">
+                                        <%= c.category_name %>
+                                    </label><br>
+                                    <% })%>
+
+                            </div>
+                        </center>
+                        <center>
+                            <h5 class="text-dark mt-3">SORT BY</h5>
+                            <div class="divider"></div>
+
+                            <div class="custom-control custom-checkbox align-items-center mt-3 mb-5"
+                                style="text-align: left;margin-left:35%">
+
+                                <input type="radio" name="price" class="custom-control-input" id="customCheck1" value="low">
+                                <label class="custom-control-label text-muted" for="customCheck1">Price Low to
+                                    High</label><br>
+                                <input type="radio" name="price" class="custom-control-input" id="customCheck1" value="high">
+                                <label class="custom-control-label text-muted" for="customCheck1">Price High to
+                                    Low</label><br>
+                            </div>
+                        </center>
+                        <div class="apply-btn">
+                            <button class="btn bg-success text-white">Apply</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-lg-9 col-md-12">
+                    <div class="row">
+                        <% if(products.length == 0 ){ %>
+                            <p>No Items Found.</p>
+                         <%} %> 
+                        <% for(var i=0; i < products.length ; i++){%>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class=" img">
+                                    <center class="over">
+                                        <img class="mt-4" src="/./img/<%= products[i].img_src %>" alt="image"
+                                            height="80%" width="60%">
+                                        <form action="/add-to-cart/<%= products[i]._id %>" class="cart-form">
+                                            <input type="hidden" name="id" value="<%= products[i]._id%>">
+                                            <button type="submit" class="btn bg-success text-white">Add To Cart</button>
+                                        </form>
+                                        <p class="text-secondary">
+                                            <%= products[i].Product_name %>
+                                        </p>
+                                        <p class="text-dark">&#x20b9; <%= products[i].Sale_Price %>
+                                        </p>
+                                    </center>
+                                </div>
+                            </div>
+                            <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SHOP PAGE -->
+
+        <%- include('footer') -%>
+            <%- include('bootstrapLink') -%>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    $(function () {
+                        $('.cart-form').each(function () {
+                            $(this).submit(function (event) {
+                                event.preventDefault(); // Stops browser from navigating away from page
+                                var data = $(this).serialize().valueOf();
+                                console.log(data)
+                                // build a json object or do something with the form, store in data
+                                $.get('/add-to-cart/' + data, { id: "abc" }).done(function (resp) {
+                                    alert(resp)
+                                });
+                            })
+
+                        });
+                    });    
+                </script>
+</body>
+
+</html>

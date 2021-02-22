@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Category Add Or Upldate</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <center>
+            <h1>
+                Insert Category
+            </h1>
+        </center>
+    </div>
+    <div class="container-fluid mt-3 parentProduct">
+        <form method="POST" action="/admin/managecategory" method="POST" autocomplete="off"
+            enctype="multipart/form-data" class="productForm">
+            <input type="hidden" name="_id" value="<%= category._id %>">
+            <table class="productTable">
+                <tr>
+                    <td>
+                        Category Name:
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="category_name" placeholder=" Category Name"
+                            value="<%= category.category_name %>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text-danger">
+                            <% if(messages.err){ %>
+                                <p>
+                                    <%= messages.err %>
+                                </p>
+                                <%}%>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" href="/admin/managecategory/list"><i class="fa fa-list-alt"></i>
+                            View All</a>
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>

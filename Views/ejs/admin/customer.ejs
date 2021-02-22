@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>
+        Customer
+    </title>
+    <%- include('bootstrap') -%>
+</head>
+<body>
+    <div class="container-fluid mt-3">
+        <center>
+            <h1>
+                Customers
+            </h1>
+        </center>
+    </div>
+    <div class="container-fluid mt-5 mb-3">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <h6 style="border-bottom: 1px solid black;border-top: 1px solid black; padding:5px">Name</h6>
+            </div>
+            <div class="col-lg-3 col-lg-3 col-lg-3">
+                <h6 style="border-bottom: 1px solid black;border-top: 1px solid black; padding:5px">Email</h6>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-2">
+                <h6 style="border-bottom: 1px solid black;border-top: 1px solid black; padding:5px">Phone no.</h6>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-2"></div>
+        </div>
+        <% customer.forEach(c=>{ %>
+            <% if (c.isUser){%>
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <p><%= c.name %></p>
+                </div>
+                <div class="col-lg-3 col-lg-3 col-lg-3">
+                    <p><%= c.email %></p>
+                </div>
+                <div class="col-lg-2 col-sm-2 col-md-2">
+                    <p><%= c.phone_no %></p>
+                </div>
+                <div class="col-lg-2 col-sm-2 col-md-2">
+                    <a href="#" class="btn bg-danger text-white" style="font-size:13px;">Deactivate</a>
+                    
+                </div>
+            </div>
+            <%}%>
+        <% })%>
+    </div>
+
+</body>
+</html>

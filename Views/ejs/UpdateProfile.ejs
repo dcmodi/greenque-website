@@ -1,0 +1,15 @@
+<% if(Object.keys(user).length != 0){ %>
+<form action="/update-profile" method="post">
+ Name:
+ <input type="text" name="name" value=<%= user.name %>><br><br>
+ Email:
+ <input type="text" name="email" value=<%= user.email %>><br><br>
+ Phone_no:
+ <input type="text" name="phone_no"  value=<%= user.phone_no %>><br><br>  
+ <button type="submit">Update</button>   
+ </form>
+ <% } %>
+ <% if(Object.keys(user).length == 0){ %>
+     <a href="/login">Login</a> <span>To Continue</span>
+ <% } %>
+ 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cart</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+
+    <%- include('header'); -%>
+        <!-- CART -->
+        <% if(Object.keys(cart).length==0 || Object.keys(cart.items).length == 0){ %>
+            <div class="container mt-5" style="height:300px" id="cart">
+
+                <h1>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    Cart is Empty
+                </h1>
+                <center class="mt-5"><a href="/shop" class="btn bg-success text-white">Continue Shopping</a> </center>
+            </div>
+            <% } %>
+                <% if(Object.keys(cart).length !=0 && Object.keys(cart.items).length != 0){ %>
+                    <div class="container mt-5">
+                        <center>
+                            <h3 class="text-dark">Cart</h3>
+                        </center>
+
+                        <div class="row mt-5">
+                            <div class="col-4"><span class="text-dark"
+                                    style="border-bottom:1px solid black;padding-bottom: 3px;"><b>Product</b></span>
+                            </div>
+                            <div class="col-2"><span class="text-dark"
+                                    style="border-bottom:1px solid black;padding-bottom: 3px;"><b>Qty.</b></span></div>
+                            <div class="col-2"><span class="text-dark"
+                                    style="border-bottom:1px solid black;padding-bottom: 3px;"><b>Price</b></span></div>
+                            <div class="col-2"><span class="text-dark"
+                                    style="border-bottom:1px solid black;padding-bottom: 3px;"><b>Total</b></span></div>
+                            <div class="col-2"></div>
+                        </div>
+                        <% for(var i=0;i < cart.items.length ; i++){%>
+                            <div class="row mt-3">
+                                <div class="col-4">
+                                    <%= cart.items[i].name %>
+                                </div>
+                                <div class="col-2">
+                                    <form action="/update-cart" method="POST">
+                                        <input type="hidden" name="id" value="<%= cart.items[i].id %>">
+                                        <input type="number" name="qty" id="" min="1" max="10"
+                                            value="<%= cart.items[i].qty %>" style="width:100%;" onchange="this.form.submit()">
+                                    </form>
+                                </div>
+                                <div class="col-2">&#x20b9; <%= cart.items[i].price %>
+                                </div>
+                                <div class="col-2">&#x20b9; <%= (cart.items[i].price * cart.items[i].qty) %>
+                                </div>
+                                <div class="col-2">
+                                    <a href="/delete-cart-product/<%= cart.items[i].id %>" class="text-danger"><i
+                                            class="fa fa-trash" aria-hidden="true" style="font-size:20px"></i></a>
+                                </div>
+                            </div>
+
+                            <%} %>
+
+                                <div class="row mt-3">
+                                    <div class="col-8"></div>
+                                    <div class="col-4"><span
+                                            style="border-top:1px solid black;padding-top: 4px;"><b>&#x20b9; <%= cart.totalPrice %></b></span></div>
+                                </div>
+                                <% if(Object.keys(u).length==0 ){ %>
+                                    <center class="mt-5"><a href="/login" class="btn bg-success text-white">Login to
+                                            Continue</a> </center>
+                                    <% } %>
+                                        <% if(Object.keys(u).length !=0 ){ %>
+                                            <center class="mt-5"><a href="/checkout"
+                                                    class="btn bg-success text-white">Proceed To Purchase</a>
+                                            </center>
+                                            <% } %>
+
+                    </div>
+                    <% } %>
+                        <!-- END CART -->
+                        <%- include('footer') -%>
+                            <%- include('bootstrapLink') -%>
+</body>
+
+</html>

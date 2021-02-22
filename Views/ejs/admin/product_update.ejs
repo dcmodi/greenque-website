@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Add Or Upldate</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <center>
+            <h1>
+                Insert Product
+            </h1>
+        </center>
+    </div>
+    <div class="container-fluid mt-3 parentProduct">
+        <form method="POST" action="/admin/ManageProduct" method="POST" autocomplete="off" enctype="multipart/form-data"
+            class="productForm">
+            <input type="hidden" name="_id" value="<%= product._id %>">
+            <table class="productTable">
+                <tr>
+                    <td>
+                        Product Name:
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="Product_name" placeholder=" Product Name"
+                            value="<%= product.Product_name %>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text-danger">
+                            <%= product.ProductNameError %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Category :
+                    </td>
+                    <td>
+                        <select name="category" id="dropdown" multiple>
+                            <% cat.forEach(c=>{%>
+                                <option value="<%= c.category_name %> "><%= c.category_name %></option>
+                            <%})%>  
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text-danger">
+                            <%= product.ProductNameError %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Image :
+                    </td>
+                    <td>
+                        <input type="file" class="form-control" name="img" placeholder=" Image Source"
+                value="G:/DARSHAN/College Project/Views/img/<%= product.img_src %>">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Sale Price : 
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="Sale_Price" placeholder=" Sale Price"
+                value="<%= product.Sale_Price %>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text-danger">
+                            <%= product.SalePriceError %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Qty
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="Qty" placeholder=" Quantity" value="<%= product.Qty %>">
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="text-danger">
+                        <%= product.QuantityError %>
+                    </div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" href="/admin/ManageProduct/list"><i class="fa fa-list-alt"></i> View All</a>
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </form>
+    </div>
+    
+</body>
+
+</html>

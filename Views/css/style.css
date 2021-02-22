@@ -1,0 +1,269 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: rgba(255, 235, 205, 0.5);
+}
+
+/* LOADER */
+.spin{
+    display: none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+#spinner,#spinner2
+{
+	border-radius:360px;
+	border:2px solid transparent;
+	border-top:5px solid #198754;
+	border-bottom:5px solid #198754;
+	border-left:5px solid #198754;
+	height:100px;
+	width:100px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	transform:translate(-50%,-50%);
+	animation:spin 2s infinite  linear;
+}
+#spinner2{
+	border-radius:360px;
+	border:2px solid transparent;
+	border-top:5px solid #198754;
+	border-bottom:5px solid #198754;
+	border-right:5px solid #198754;
+	height:80px;
+	width:80px;
+	animation:spin2 2s infinite  linear;
+}
+@keyframes spin
+{
+	from
+	{
+		transform:rotate(0deg);
+	}
+	to
+	{
+		transform:rotate(360deg);
+	}
+}
+@keyframes spin2
+{
+	from
+	{
+		transform:rotate(360deg);
+	}
+	to
+	{
+		transform:rotate(0deg);
+	}
+}
+/* END LOADER */
+
+/* Header */
+#header i{
+    
+    font-size: 28px;
+}
+#header a.active{
+    text-transform: capitalize;
+}
+#header .fa-bars{
+    color : black;
+}
+#header .cart{
+    background-color: #198754;
+    border-radius: 35%;
+    color:white;
+    width:50px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+#header a{
+    color : black;
+}
+#header ul:nth-child(1){
+    margin-left: auto;
+    padding-right: 15px;    
+}
+#header span{
+    margin-top: 5%;
+}
+#header li a{
+    transition: all 0.2s;
+}
+#header li a:hover{
+    padding-bottom: 3px;
+    border-bottom: 2px solid #198754;
+}
+@media only screen and (max-width: 768px) {
+    #header .cart-ul{
+        display: none;
+    }
+  }
+
+/* End Header */
+
+
+/* FOOTER */
+#footer{
+    color:white;
+}
+
+#footer div{
+    justify-content: center;
+}
+
+#footer a{
+    color:white;
+}
+
+#footer .sign{
+    display: flex;
+    align-items: center;
+}
+
+#footer .sign a{
+    margin-right: 4%;
+}
+/* END FOOTER */
+
+/*SLIDER CSS*/
+.carousel {
+    margin-bottom: 4rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+}
+
+.carousel-item>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}
+/*END SLIDER CSS
+
+/* Home Page Products*/
+
+#home-product img{
+    border : 3px solid transparent;
+    box-shadow: 5px 5px 5px grey;
+    border-radius: 10%;
+}
+#home-product .img:hover > .over button{
+    opacity: 1;
+    scale: 1;
+}
+.divider{
+    width : 40%;
+    border-bottom: 3px solid #198754;
+}
+#home-product .over button{
+    width:40%;
+    opacity: 0;
+    scale: 0;
+    margin-top: -25%;
+    transition: all 0.3s;
+}
+
+#home-product .over .text-dark{
+    margin-top: -5%;
+}
+
+/*End Home Products*/
+/*SHOP PAGE*/
+#shop .custom-control-input{
+    margin-right:5%;
+}
+#shop .apply-btn{
+    float:right;
+    padding-right: 20px;
+}
+#shop .over .text-dark{
+    margin-top: -5%;
+}
+#shop .img:hover > .over button{
+    opacity: 1;
+    scale: 1;
+}
+#shop img{
+    border : 3px solid transparent;
+    box-shadow: 5px 5px 5px grey;
+    border-radius: 10%;
+}
+#shop .over button{
+    width:40%;
+    opacity: 0;
+    margin-top:-25%;
+    scale: 0;
+    
+    transition: all 0.3s;
+}
+
+/* END SHOP PAGE */
+/*Login Page*/
+
+#login,#register,#forgot-password{
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:center;
+    justify-content: center;
+}
+
+#register{
+    height: 500px;
+}
+/*End Login PAge*/
+/*About US*/
+#about .font{
+    font-weight: 600;
+}
+#about .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/*End About*/
+
+/*Check Out*/
+#check-out .container {
+    max-width: 960px;
+  }
+  
+/*End Check out*/
+/*Cart*/
+
+#cart{
+    text-align: center;
+    
+}
+/*End Cart*/
+
+/* Profile Page*/
+#profileForm input{
+    outline: none;
+    border : 0px;
+    border-bottom: 1px solid black;
+    box-shadow: 1px 1px 1px 1px gray;
+    width: 50%;
+}

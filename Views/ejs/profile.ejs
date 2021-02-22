@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <%- include('header'); -%>
+        <% if(Object.keys(user).length !=0){ %>
+            <form action="/update-profile" method="POST" id="profileForm" class=" mr-5 mt-5">
+                <p>Name</p>
+                <input type="text" name="name" value="<%= user.name %>" class="text" readonly>
+                <p class="pt-3">Email</p>
+                <input type="text" name="name" value="<%= user.email %>" class="text" readonly>
+                <p class="pt-3">Mobile No.</p>
+                <input type="text" name="name" value="<%= user.phone_no %>" class="text" readonly>
+            </form>
+
+            <form action="/logout?_method=DELETE" method="POST">
+                <center>
+                    <button type="submit" class="mt-3">Log Out</button>
+                </center>
+                
+            </form>
+            <% } %>
+                <% if(Object.keys(err).length !=0){ %>
+                    <p>
+                        <%= err %>
+                    </p>
+                    <a href="/login">Login</a> <span>To Continue</span>
+                    <% } %>
+                        <%- include('footer'); -%>
+                            <%- include('bootstrapLink'); -%>
+                                <script defer>
+                                    var t = document.getElementsByClassName('text')
+                                    console.log(t)
+                                    t.readOnly = true
+                                </script>
+</body>
+
+</html>

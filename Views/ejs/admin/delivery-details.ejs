@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Delivery Details</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <div class="container-fluid mt-5">
+        <center>
+            <h1>Delivery Details</h1>
+        </center>
+    </div>
+    <div class="container-fluid mt-3">
+
+        <form method="POST" action="/admin/delivery-details" autocomplete="off" enctype="multipart/form-data"
+            class="productForm">
+
+            <input type="hidden" name="_id" value="<%= delivery._id %>">
+            <table class="productTable">
+                <% if(messages.err){ %> 
+                    <tr>
+                        <td>
+                            <p class="text-danger"><%= messages.err %></p>
+                        </td>
+                    </tr>
+                <% } %>
+                
+                <tr>
+                    <td>
+                        Name :
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="name" value="<%= delivery.name %>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delivery Address: </td>
+                    <td>
+                        <input type="text" class="form-control" name="category_name"
+                            value="<%= delivery.delivery_Address %>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Contact No :
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="contact" value="<%= delivery.contact_no %>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter Delivery Boy Name : 
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="delivery" placeholder="Enter Name..">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter Delivery Boy Contact No. :
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="num" placeholder="Enter contact no..">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

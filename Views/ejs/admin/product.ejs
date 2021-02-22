@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>
+        Product List
+    </title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                <h1>
+                    <center>Product List</center>
+                </h1>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <center>
+                    <h1>
+                        <a href="/admin/ManageProduct" class="btn btn-secondary">
+                            <i class="fa fa-plus p-2" aria-hidden="true"></i>Create New
+                        </a>
+                    </h1>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <h5
+                    style="border-bottom: 1px solid black;padding-bottom: 3px;border-top: 1px solid black;padding-top: 3px">
+                    Name
+                </h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <h5
+                    style="border-bottom: 1px solid black;padding-bottom: 3px;border-top: 1px solid black;padding-top: 3px">
+                    Image
+                </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <h5
+                    style="border-bottom: 1px solid black;padding-bottom: 3px;border-top: 1px solid black;padding-top: 3px">
+                    Price
+                </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <h5
+                    style="border-bottom: 1px solid black;padding-bottom: 3px;border-top: 1px solid black;padding-top: 3px">
+                    Qty
+                </h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+    </div>
+    <div class="container-fluid mt-2">
+        <% list.forEach(li=>{ %>
+            <div class="row" style="padding:5px">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <b><%= li.Product_name %></b>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <b><%= li.img_src %></b>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <b><%= li.Sale_Price %></b>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <b><%= li.Qty %></b>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <a href="/admin/ManageProduct/<%= li._id %>"><i class="fa fa-pencil fa-lg"
+                            aria-hidden="true"></i></a>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <a href="/admin/ManageProduct/delete/<%= li._id %>"
+                        onclick="return confirm('Are you sure you want to delete this record?');"><i
+                            class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <% })%>
+    </div>
+</body>
+
+</html>

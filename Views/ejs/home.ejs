@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+
+    <%- include('header') -%>
+        <!-- IMAGE SLIDER -->
+        <div class="m-auto"></div>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777" />
+                        <img src="./img/6.jpg" alt="" width="100%" height="100%" />
+                    </svg>
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>Example headline.</h1>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777" />
+                        <img src="./img/4.jpg" alt="" width="100%" height="100%" />
+                    </svg>
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Another example headline.</h1>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-success" href="#" role="button">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777" />
+                        <img src=".img/5.jpg" alt="" width="100%" height="100%" />
+                    </svg>
+
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1 class="text-dark">One more for good measure.</h1>
+                            <p class="text-dark">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
+                                elit
+                                non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <p><a class="btn btn-lg btn-success" href="#" role="button">Browse gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+
+
+        <!-- END IMAGE SILDER-->
+
+        <!-- PRODUCTS -->
+        <div class="container" id="home-product">
+            <h3>
+                <center>Best Selling Products</center>
+            </h3>
+            <center>
+                <div class="divider"></div>
+            </center>
+            <div class="row mt-2">
+                <% for(var i=0;i < 6;i++){%>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="img">
+                            <center class="over">
+                                <img class="mt-4" src="./img/<%= products[i].img_src %>" alt="image" height="80%"
+                                    width="60%">
+                                <form action="/add-to-cart" class="cart-form">
+                                    <input type="hidden" name="id" value="<%= products[i]._id %>">
+                                    <button type="submit" class="btn bg-success text-white">Add To Cart</button>
+                                </form>
+                                <p class="text-secondary">
+                                    <%= products[i].Product_name %>
+                                </p>
+                                <p class="text-dark">&#x20b9; <%= products[i].Sale_Price %>
+                                </p>
+                            </center>
+                        </div>
+
+                    </div>
+                    <%}%>
+
+            </div>
+
+        </div>
+        </div>
+        <!-- END PRODUCTS-->
+        <%- include('footer') -%>
+            <%- include('bootstrapLink') -%>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    $(function () {
+                        $('.cart-form').each(function () {
+                            $(this).submit(function (event) {
+                                event.preventDefault(); // Stops browser from navigating away from page
+                                var data = $(this).serialize().valueOf();
+                                console.log(data)
+                                // build a json object or do something with the form, store in data
+                                $.get('/add-to-cart/' + data, { id: "abc" }).done(function (resp) { 
+                                    alert(resp)
+                                });
+                            })
+
+                        });
+                    });    
+                </script>
+
+</body>
+
+</html>
